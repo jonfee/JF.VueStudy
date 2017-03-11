@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        //画布处理对象
+        var canvas = {
+            rect: function (targetId, bgColor, x, y, width, height) {
+                /// <signature>
+                /// <param name='targetId' type='String'>画布dom的id名称</param>
+                /// <param name='bgColor' type='String'>区块的背景色</param>
+                /// <param name='x' type='Number'/>
+                /// <param name='y' type='Number'/>
+                /// <param name='toX' type='Number'/>
+                /// <param name='toY' type='Number'/>
+                /// </signature>
+                var target = document.getElementById(targetId);
+                var context = target.getContext("2d");
+                context.fillStyle = bgColor;
+                context.fillRect(x, y, width, height);
+            },
+            line: function (targetId) {
+                /// <signature>
+                /// <param name='targetId' type='String'>画布dom的id名称</param>
+                /// </signature>
+                var target = document.getElementById(targetId);
+                var context = target.getContext("2d");
+
+                // 米
+                writeLine(80, 40, 120, 80);     // \
+                writeLine(180, 40, 140, 80);    // /
+                writeLine(60, 100, 200, 100);    // 一
+                writeLine(130, 20, 130, 200);    // |
+                writeLine(120, 120, 60, 180);    // /
+                writeLine(140, 120, 200, 190);    // \
+
+                //拉
+                writeLine(300, 80, 360, 80);
+                writeLine(330, 20, 330, 200);
+                writeLine(330, 200, 310, 180);
+                writeLine(300, 160, 350, 100);
+
+                writeLine(400, 30, 420, 70);
+                writeLine(380, 80, 460, 80);
+                writeLine(400, 90, 415, 190);
+                writeLine(440, 90, 430, 190);
+                writeLine(370, 200, 470, 200);
+
+                context.stroke();
+
+                function writeLine(x, y, toX, toY) {
+                    /// <signature>
+                    /// <param name='x' type='Number'/>
+                    /// <param name='y' type='Number'/>
+                    /// <param name='toX' type='Number'/>
+                    /// <param name='toY' type='Number'/>
+                    /// </signature>
+                    context.moveTo(x, y);
+                    context.lineWidth = 5;
+                    context.lineTo(toX, toY);
+                }
+            },
+            arc: function (targetId, x, y, radius, startAngle, endAngle, anticlockwise) {
+                /// <signature>
+                /// <param name='targetId' type='String'>画布dom的id名称</param>
+                /// <param name='x' type='Number'/>
+                /// <param name='y' type='Number'/>
+                /// <param name='radius' type='Number'/>
+                /// <param name='startAngle' type='Number'/>
+                /// <param name='endAngle' type='Number'/>
+                /// <param name='anticlockwise' type='Boolean' optional='true' />
+                /// </signature>
+                var target = document.getElementById(targetId);
+                var context = target.getContext("2d");
+                context.fillStyle = "black";
+                context.beginPath();
+                context.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+                context.closePath();
+                context.fill();
+            },
+            linearGradient: function (targetId, color1, color2, x, y, toX, toY) {
+                /// <signature>
+                /// <param name='targetId' type='String'>画布dom的id名称</param>
+                /// <param name='color1' type='String'>颜色1</param>
+                /// <param name='color2' type='String'>颜色2</param>
+                /// <param name='x' type='Number'/>
+                /// <param name='y' type='Number'/>
+                /// <param name='toX' type='Number'/>
+                /// <param name='toY' type='Number'/>
+                /// </signature>
+                var target = document.getElementById(targetId);
+                var context = target.getContext("2d");
+                var grd = context.createLinearGradient(x, y, toX, toY);
+                grd.addColorStop(0, color1);
+                grd.addColorStop(1, color2);
+                context.fillStyle = grd;
+                context.fillRect(x, y, toX, toY);
+            },
+            fillImg: function (targetId, x, y, imgSrc) {
+                /// <signature>
+                /// <param name='targetId' type='String'>画布dom的id名称</param>
+                /// <param name='x' type='Number'/>
+                /// <param name='y' type='Number'/>
+                /// <param name='imgSrc' type='String'>图片地址</param>
+                /// </signature>
+                var target = document.getElementById(targetId);
+                var context = target.getContext("2d");
+                var img = new Image();
+                img.src = imgSrc;
+                context.drawImage(img, x, y);
+            }
+        };
+    </script>
+</head>
+<body>
+    <canvas id="rectCanvas" width="200" height="100" style="border:1px solid gray;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <br />
+    <canvas id="lineCanvas" width="510" height="240" style="border:1px solid gray;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <br />
+    <canvas id="arcCanvas" width="100" height="100" style="border:1px solid gray;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <br />
+    <canvas id="gradientCanvas" width="200" height="50" style="border:1px solid gray;">
+        Your browser does not support the canvas element.
+    </canvas>
+    <br />
+    <canvas id="imgCanvas" width="200" height="100" style="border:1px solid gray;">
+        Your browser does not support the canvas element.
+    </canvas>
+
+    <script type="text/javascript">
+        canvas.rect("rectCanvas", "red", 0, 0, 150, 75);
+        canvas.line("lineCanvas");
+        canvas.arc("arcCanvas", 30, 30, 20, 0, Math.PI * 2, true);
+        canvas.linearGradient("gradientCanvas", "red", "green", 0, 10, 200, 30);
+        canvas.fillImg("imgCanvas", 0, 0, "../sources/img/eg_dragdrop_w3school.gif");
+    </script>
+</body>
+</html>
