@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="H5\canvas-test.html" />
+    <Content Include="H5\localStorage.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
