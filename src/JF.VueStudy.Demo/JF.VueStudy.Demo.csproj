@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="H5\canvas-test.html" />
     <Content Include="H5\localStorage.html" />
+    <Content Include="H5\webworkers-test.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -107,6 +108,7 @@
   <ItemGroup>
     <Content Include="H5\drag-test.html" />
     <Content Include="sources\img\eg_dragdrop_w3school.gif" />
+    <Content Include="sources\js\workers.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
