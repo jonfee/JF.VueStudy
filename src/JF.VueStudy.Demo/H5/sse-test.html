@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>获得服务器更新</h1>
+    <div id="result"></div>
+
+    <script type="text/javascript">
+
+        var rstObj = document.getElementById("result");
+
+        if (typeof (EventSource) !== "undefined") {
+            var source = new EventSource("/api/h5/sse");
+
+            console.log(source);
+
+            source.onmessage = function (event) {
+
+                console.log(event.data);
+
+                rstObj.innerHTML += event.data + "<br />";
+            }
+
+            source.onopen = function (event) {
+                rstObj.innerHTML += "通往服务器的连接已被打开。<br />";
+            }
+
+            source.onerror = function (event) {
+                rstObj.innerHTML += "错误！<br />";    //每次都会进来，why?
+            }
+        } else {
+            rstObj.innerHTML = "抱歉，您的浏览器不支持 server-sent 事件...";
+        }
+    </script>
+</body>
+</html>
