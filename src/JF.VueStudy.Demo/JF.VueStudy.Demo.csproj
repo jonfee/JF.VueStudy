@@ -110,6 +110,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="H5\drag-test.html" />
+    <Content Include="Sources\img\eg_dragdrop_w3school.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
