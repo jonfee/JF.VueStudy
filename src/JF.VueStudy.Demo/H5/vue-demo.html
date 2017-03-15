@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        });
+
+        function play() {
+            var arr = ["Jonfee", "Cassic", "Mira", "Byron","Ali","Enla","Bowen","Andraw","John","Susi"];
+
+            app.message = "Hello " + arr[parseInt(Math.random() * arr.length)]+"!";
+        }
+
+        setInterval(play, 1000);
+    </script>
+</body>
+</html>
