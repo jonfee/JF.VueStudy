@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <todo-item v-for="item in groceryList" v-bind:title="tip" v-bind:todo="item"></todo-item>
+        </ol>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component('todo-item', {
+            props: ['todo','tip'],
+            template: '<li title="{{tip}}">{{todo.text}}</li>'
+        });
+
+        var app1 = new Vue({
+            el: "#app",
+            data: {
+                tip: '这是一种食物',
+                groceryList: [
+                    { text: '蔬菜' },
+                    { text: '奶酪' },
+                    { text: '水果' },
+                    { text: '牛肉' },
+                    { text: '其他人类吃的东西' }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
