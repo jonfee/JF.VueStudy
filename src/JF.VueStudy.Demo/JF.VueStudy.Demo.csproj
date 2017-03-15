@@ -143,6 +143,7 @@
     <Content Include="H5\drag-test.html" />
     <Content Include="H5\localStorage.html" />
     <Content Include="H5\sse-test.html" />
+    <Content Include="H5\vue-click.html" />
     <Content Include="H5\vue-demo.html" />
     <Content Include="H5\webworkers-test.html" />
     <Content Include="Sources\img\eg_dragdrop_w3school.gif" />

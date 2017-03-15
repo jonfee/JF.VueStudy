@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <button v-on:click="addTimes">点击</button>
+        <button v-on:click="reverseMessage">逆转消息</button>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                times: 0,
+                message: 'Clicked 0 times.'
+            },
+            methods: {
+                addTimes: function () {
+                    this.times += 1;
+                    var newMsg = "Clicked " + this.times + " times.";
+                    if (this.isReverse()) {
+                        newMsg = this.cusReverse(newMsg);
+                    }
+                    this.message = newMsg;
+                },
+                reverseMessage: function () {
+                    this.message = this.cusReverse(this.message);
+                },
+                cusReverse:function(str){
+                    if (typeof (str) === "undefined") {
+                        return "";
+                    }
+                    return str.split('').reverse().join('');
+                },
+                isReverse: function () {
+                    var firstChar = this.message.substring(0, 1);
+                    return firstChar == ".";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
