@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <p>当前消息值：{{message}}</p>
+        <input type="text" v-model="message" />
+        <p id="log"></p>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'vue'
+            },
+            beforeCreate: function () {
+                alert("beforeCreate");
+            },
+            created: function () {
+                alert("created");
+            },
+            beforeMount: function () {
+                alert("beforeMount");
+            },
+            mounted: function () {
+                alert( "mounted");
+            },
+            beforeUpdate: function () {
+                alert("beforeUpdate");
+            },
+            updated: function () {
+                alert( "updated");
+            },
+            beforeDestroy: function () {
+                alert( "beforeDestroy");
+            },
+            destroyed: function () {
+                alert("destroyed");
+            }
+        })
+    </script>
+</body>
+</html>
