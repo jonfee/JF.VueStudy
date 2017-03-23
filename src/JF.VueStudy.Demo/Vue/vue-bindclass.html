@@ -24,28 +24,83 @@
     </style>
 </head>
 <body>
-    <div id="app1" class="static" v-bind:class="classObject">差点忘了显示文字</div>
-    <div id="app2" class="static" v-bind:class="{active:classObject.active,bold:classObject.bold}">差点忘了显示文字</div>
+    <div id="exp1" class="static" v-bind:class="{active:isActive,'font-red':hasError,bold:isBold}">差点忘了显示文字</div>
+    <div id="exp2" class="static" v-bind:class="classObject">差点忘了显示文字</div>
+    <div id="exp3" class="static" v-bind:class="classObject">差点忘了显示文字</div>
+    <div id="exp4" class="static" v-bind:class="[activeClass,errorClass,boldClass]">差点忘了显示文字</div>
+    <div id="exp5" class="static" v-bind:class="[{active:isActive},hasError?'font-red':'',boldClass]">差点忘了显示文字</div>
+    <div id="exp6">
+        <my-component class="static" v-bind:class="{active:isActive,'font-red':hasError,bold:isBold}">差点忘了显示文字[组件]</my-component>
+    </div>
     <script type="text/javascript">
-        var app = new Vue({
-            el: '#app1',
+
+        var vm1 = new Vue({
+            el: '#exp1',
+            data: {
+                isActive: false,
+                hasError: false,
+                isBold: false
+            }
+        });
+
+        var vm2 = new Vue({
+            el: '#exp2',
             data: {
                 classObject: {
                     active: true,
-                    'font-red':true,
-                    bold: true,
+                    'font-red': false,
+                    bold: false,
                 }
             }
-        })
+        });
 
-        var app2 = new Vue({
-            el: '#app2',
+        var vm3 = new Vue({
+            el: '#exp3',
             data: {
-                classObject: {
-                    active: true,
-                    'font-red': true,
-                    bold: true,
+                isActive: true,
+                error: null,
+                isBold: true
+            },
+            computed: {
+                classObject: function () {
+                    return {
+                        active: this.isActive && !this.error,
+                        'font-red': this.error && this.error.type == 'fatal',
+                        bold: this.isBold
+                    }
                 }
+            }
+        });
+
+        var vm4 = new Vue({
+            el: '#exp4',
+            data: {
+                activeClass: 'active',
+                errorClass: 'font-red',
+                boldClass: ''
+            }
+        });
+
+        var vm5 = new Vue({
+            el: '#exp5',
+            data: {
+                isActive: true,
+                hasError: true,
+                isBold: true,
+                activeClass: 'active',
+                boldClass: 'bold'
+            }
+        });
+
+        Vue.component('my-component', {
+            template: '<p class="">Hi</p>',
+        });
+        var vm5 = new Vue({
+            el: '#exp6',
+            data: {
+                isActive: false,
+                hasError: true,
+                isBold: false,
             }
         })
     </script>
