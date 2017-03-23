@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+    <style type="text/css">
+        .static {
+            font: 12px;
+        }
+
+        .active {
+            text-decoration: underline;
+        }
+
+        .font-red {
+            color: red;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app1" class="static" v-bind:class="classObject">差点忘了显示文字</div>
+    <div id="app2" class="static" v-bind:class="{active:classObject.active,bold:classObject.bold}">差点忘了显示文字</div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app1',
+            data: {
+                classObject: {
+                    active: true,
+                    'font-red':true,
+                    bold: true,
+                }
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                classObject: {
+                    active: true,
+                    'font-red': true,
+                    bold: true,
+                }
+            }
+        })
+    </script>
+</body>
+</html>
