@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="app1">{{message|tx_replace|capitalize('你好，',' 哦耶！')}}</div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app1',
+            data: {
+                message: '天下地图 world map'
+            },
+            filters: {
+                tx_replace: function (value) {
+                    if (!value) return '';
+                    value = value.toString();
+                    return value.replace('天下', '世界');
+                },
+                capitalize: function (value, leftPad, rightPad) {
+                    if (!value) return '';
+                    var words = value.toString().split(' ');
+                    for (var i in words) {
+                        var item = words[i];
+                        item = item.charAt(0).toUpperCase() + item.slice(1);
+                        words[i] = item;
+                    }
+                    return leftPad + words.join(' ') + rightPad;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

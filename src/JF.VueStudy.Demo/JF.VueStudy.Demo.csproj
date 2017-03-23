@@ -150,6 +150,7 @@
     <Content Include="Sources\img\eg_dragdrop_w3school.gif" />
     <Content Include="Sources\js\vue.js" />
     <Content Include="Sources\js\workers.js" />
+    <Content Include="Vue\vue-filters.html" />
     <Content Include="Vue\vue-lifecycle.html" />
     <Content Include="Web.config" />
   </ItemGroup>
