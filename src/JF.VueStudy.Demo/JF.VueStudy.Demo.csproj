@@ -143,7 +143,7 @@
     <Content Include="H5\drag-test.html" />
     <Content Include="H5\localStorage.html" />
     <Content Include="H5\sse-test.html" />
-    <Content Include="Vue\HtmlPage1.html" />
+    <Content Include="Vue\vue-for.html" />
     <Content Include="Vue\vue-bindclass.html" />
     <Content Include="Vue\vue-click.html" />
     <Content Include="Vue\vue-component.html" />
@@ -154,6 +154,7 @@
     <Content Include="Sources\js\vue.js" />
     <Content Include="Sources\js\workers.js" />
     <Content Include="Vue\vue-filters.html" />
+    <Content Include="Vue\vue-forcomponent.html" />
     <Content Include="Vue\vue-lifecycle.html" />
     <Content Include="Vue\vue-watcher.html" />
     <Content Include="Web.config" />
