@@ -15,7 +15,7 @@
     </div>
 
     <script type="text/javascript">
-        var app = new Vue({
+        var vm = new Vue({
             el: '#app',
             data: {
                 message: '',
@@ -26,11 +26,12 @@
         });
 
         function play() {
-            var name = app.names[parseInt(Math.random() * app.names.length)]
-            app.message = name;
+            var name = vm.names[parseInt(Math.random() * vm.names.length)]
+            vm.message = name;
         }
 
         setInterval(play, 1000);
-    </script>
+        
+        </script>
 </body>
 </html>
