@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="example-1">
+        <ul>
+            <li v-for="item in items">
+                {{item.message}}
+            </li>
+            <li v-for="(item,index) in items">
+                items[{{index}}] = {{item.message}}
+            </li>
+        </ul>
+        <template v-for="(value,key) in name">
+            <p>{{key}}:{{value}}</p>
+        </template>
+        <p>
+            <template v-for="number in 20">
+                <span>{{number}}，</span>
+            </template>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#example-1',
+            data: {
+                items: [
+                    { message: 'Foo' },
+                    { message: 'Bar' }
+                ],
+                name: {
+                    firstName: 'Wu',
+                    lastName: 'Jonfee',
+                    age: 30
+                }
+            }
+        });
+    </script>
+</body>
+</html>
