@@ -19,6 +19,10 @@
                 v-bind:title="todo"
                 v-on:remove="todos.splice(index,1)"></li>
         </ul>
+        <p>包含a、b、c其中任意一个字符的项有：</p>
+        <ul>
+            <li v-for="item in eventTodos">{{ item }}</li>
+        </ul>
     </div>
 
     <script type="text/javascript">
@@ -42,6 +46,13 @@
                 'Mow the lawn',
                 'Do the dishes',
                 ]
+            },
+            computed:{
+                eventTodos: function () {
+                    return this.todos.filter(function (item) {
+                        return /[abc]/.test(item);
+                    });
+                }
             },
             methods: {
                 addNewTodo: function () {
