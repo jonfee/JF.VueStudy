@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="example-1">
+        <button @click="counter+=1">增加  1</button><button @click="add" style="margin-left:10px;">换个姿势增加 1</button>
+        <p>这个按钮被点击了 {{counter}} 次。</p>
+
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#example-1',
+            data: {
+                counter:0
+            },
+            methods: {
+                add: function () {
+                    this.counter += 1;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
