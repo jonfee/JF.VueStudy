@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="example-1">
+        <input v-model="message" :placeholder="place" /><button @click="transferToHolder">转换为PlaceHolder</button>
+        <p>message is:{{message}}</p>
+
+        <template>
+            <my-check v-for="name in checkObject.options" v-bind:title="name"></my-check>
+        </template>
+
+        <!--在"change"而不是"input" 事件中更新-->
+        <input v-model.lazy="person.name" />
+
+        <input v-model.number="person.age" type="number" />
+
+        <input v-model.trim="person.name" />
+    </div>
+    <script type="text/javascript">
+
+        Vue.component('my-check', {
+            template: '\
+                <p>\
+                    <input type="checkbox" v-bind:id="title" v-bind:value="title" />\
+                    <label v-bind:for="title">{{title}}</label>\
+                </p>\
+            ',
+            props: ['title']
+        });
+
+        var vm = new Vue({
+            el: '#example-1',
+            data: {
+                message: '',
+                place: 'edit me',
+                checkObject: {
+                    options: ["Jack", "John", "Mike", "Lucy", "Lili"],
+                    names: []
+                },
+                person: {
+                    name: 'Jonfee',
+                    sex: '男',
+                    age: 33
+                }
+            },
+            methods: {
+                transferToHolder: function () {
+                    this.place = this.message;
+                    this.message = "";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
