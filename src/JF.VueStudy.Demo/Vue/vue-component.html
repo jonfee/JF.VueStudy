@@ -8,19 +8,70 @@
 </head>
 <body>
     <div id="app">
+        <p>
+            <my-child message="Hello!"></my-child>
+        </p>
         <ol>
-            <todo-item v-for="item in groceryList" v-bind:title="tip" v-bind:todo="item"></todo-item>
+            <todo-item v-for="item in groceryList" v-bind:title="tip" :todo="item"></todo-item>
         </ol>
+
+        <ol>
+            <part-component v-for="item in groceryList" v-bind:title="tip" v-bind:todo="item"></part-component>
+        </ol>
+
+        <div>
+            <p>共用一个 data 的组件</p>
+            <simple-counter></simple-counter>
+            <simple-counter></simple-counter>
+            <simple-counter></simple-counter>
+        </div>
+
+        <div>
+            <p>每个组件独立的 data </p>
+            <simple-counter2></simple-counter2>
+            <simple-counter2></simple-counter2>
+            <simple-counter2></simple-counter2>
+        </div>
     </div>
 
     <script type="text/javascript">
-        Vue.component('todo-item', {
-            props: ['todo','tip'],
-            template: '<li title="{{tip}}">{{todo.text}}</li>'
+
+        Vue.component('my-child', {
+            props: ['message'],
+            template: '<span>{{message}}</span>'
         });
 
-        var app1 = new Vue({
+        Vue.component('todo-item', {
+            props: ['todo', 'tip'],
+            template: '<li v-bind:title="tip">{{todo.text}}</li>'
+        });
+
+        var Child = {
+            template: '<li v-bind:title="tip">{{todo.text}}</li>',
+            props: ['todo', 'tip'],
+        };
+
+        var data = { counter: 0 };
+
+        Vue.component('simple-counter', {
+            template: '<button v-on:click="counter+=1">{{counter}}</button>',
+            data: function () {
+                return data;
+            }
+        })
+
+        Vue.component('simple-counter2', {
+            template: '<button v-on:click="counter+=1">{{counter}}</button>',
+            data: function () {
+                return { counter: 0 };
+            }
+        })
+
+        var vm = new Vue({
             el: "#app",
+            components: {
+                'part-component': Child
+            },
             data: {
                 tip: '这是一种食物',
                 groceryList: [
@@ -32,6 +83,7 @@
                 ]
             }
         });
+
     </script>
 </body>
 </html>
