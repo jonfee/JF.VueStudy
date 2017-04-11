@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="counter-event-example">
+        <p>{{total}}</p>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+    </div>
+
+    <script type="text/javascript">
+        var counterComp = {
+            template: '<button v-on:click="increment">{{counter}}</button>',
+            data: function () {
+                return { counter: 0 }
+            },
+            methods: {
+                increment: function () {
+                    this.counter += 1;
+                    this.$emit('increment');
+                }
+            }
+        };
+
+        var vm = new Vue({
+            el: '#counter-event-example',
+            components: {
+                'button-counter': counterComp
+            },
+            data: {
+                total: 0
+            },
+            methods: {
+                incrementTotal: function () {
+                    this.total += 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
