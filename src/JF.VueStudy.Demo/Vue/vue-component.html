@@ -38,7 +38,7 @@
 
         Vue.component('my-child', {
             props: ['message'],
-            template: '<span>{{message}}</span>'
+            template: '<div><input v-model="message"/><br/><span>{{message}}</span></div>'
         });
 
         Vue.component('todo-item', {
