@@ -9,12 +9,13 @@
 <body>
     <div id="counter-event-example">
         <p>{{total}}</p>
-        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal" v-on:click.native="alert"></button-counter>
         <button-counter v-on:increment="incrementTotal"></button-counter>
         <button-counter v-on:increment="incrementTotal"></button-counter>
     </div>
 
     <script type="text/javascript">
+
         var counterComp = {
             template: '<button v-on:click="increment">{{counter}}</button>',
             data: function () {
@@ -39,6 +40,9 @@
             methods: {
                 incrementTotal: function () {
                     this.total += 1;
+                },
+                alert: function () {
+                    alert("这是一个监听原生事件的触发！")
                 }
             }
         });
