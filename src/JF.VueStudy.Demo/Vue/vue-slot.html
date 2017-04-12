@@ -15,7 +15,9 @@
         </my-component>
 
         <app-layout>
-            <h2 slot="header">这里可能是一个页面标题</h2>
+            <template slot="header" scope="props">
+                <h2>{{ props.text }}</h2>
+            </template>
             <p slot="footer">这里可能是一个底部说明</p>
             <p>这是一个主体段落</p>
         </app-layout>
