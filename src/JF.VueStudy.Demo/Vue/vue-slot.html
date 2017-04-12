@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <h1>我是父组件的标题</h1>
+        <my-component>
+            <p>这是一些初始内容</p>
+            <p>这是更多的初始内容</p>
+        </my-component>
+
+        <app-layout>
+            <h2 slot="header">这里可能是一个页面标题</h2>
+            <p slot="footer">这里可能是一个底部说明</p>
+            <p>这是一个主体段落</p>
+        </app-layout>
+
+        <child>
+            <template scope="props">
+                <p>hello from parent</p>
+                <p>{{ props.text }}</p>
+            </template>
+        </child>
+    </div>
+
+    <script type="text/javascript">
+
+        var my_component = {
+            template: '\
+                <div>\
+                    <h2>我是子组件的标题</h2>\
+                    <slot>\
+                        只有在没有要分发的内容时才会显示。\
+                    </slot>\
+                </div>\
+                ',
+        };
+
+        var app_layout = {
+            template: '\
+                <div>\
+                    <header>\
+                        <slot name="header" text="这里是slot.text传递的值"></slot>\
+                    </header>\
+                    <main>\
+                        <slot></slot>\
+                    </main>\
+                    <footer>\
+                        <slot name="footer"></slot>\
+                    </footer>\
+                </div>\
+           ',
+        };
+
+        var child_component = {
+            template:'\
+                <div>\
+                    <slot text="hello from child"></slot>\
+                </div>\
+            '
+        };
+
+        var vm = new Vue({
+            el: '#example',
+            components: {
+                'my-component': my_component,
+                'app-layout': app_layout,
+                'child':child_component
+            }
+        });
+    </script>
+</body>
+</html>
