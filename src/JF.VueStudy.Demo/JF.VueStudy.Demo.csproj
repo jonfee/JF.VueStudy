@@ -144,6 +144,7 @@
     <Content Include="H5\localStorage.html" />
     <Content Include="H5\sse-test.html" />
     <Content Include="Vue\vue-component-event.html" />
+    <Content Include="Vue\vue-currency-input.html" />
     <Content Include="Vue\vue-event.html" />
     <Content Include="Vue\vue-for.html" />
     <Content Include="Vue\vue-bindclass.html" />
