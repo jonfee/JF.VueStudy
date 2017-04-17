@@ -28,6 +28,19 @@
                 <p>{{ props.text }}</p>
             </template>
         </child>
+
+        <item-component :items="items">
+            <template slot="item" scope="props">
+                <li>{{ props.text }}[{{ props.code }}]</li>
+            </template>
+        </item-component>
+
+        <keep-alive>
+            <component :is="currentView"></component>
+        </keep-alive>
+        <div>
+            <p is="button-component" v-for="comp in comps" :comtype="comp.type" :comname="comp.name" @show="showContent"></p>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -39,6 +52,7 @@
                     <slot>\
                         只有在没有要分发的内容时才会显示。\
                     </slot>\
+                    <p>my_component</p>\
                 </div>\
                 ',
         };
@@ -55,24 +69,82 @@
                     <footer>\
                         <slot name="footer"></slot>\
                     </footer>\
+                    <p>app_layout</p>\
                 </div>\
            ',
         };
 
         var child_component = {
-            template:'\
+            template: '\
                 <div>\
                     <slot text="hello from child"></slot>\
+                    <p>child_component</p>\
                 </div>\
             '
         };
+
+        var item_component = {
+            template: '\
+                <ul>\
+                    <slot name="item"\
+                        v-for="item in items"\
+                        :text="item.text"\
+                        :code="item.code">\
+                    </slot>\
+                    <p>item_component</p>\
+                </ul>\
+            ',
+            props: ['items']
+        };
+
+        var button_component = {
+            template: '\
+                <button  v-on:click="show">{{ comname }}</button>\
+            ',
+            props: {
+                comtype: {
+                    type: Object,
+                    default: null
+                },
+                comname: {
+                    type: String,
+                    default: ''
+                }
+            },
+            methods: {
+                show: function () {
+                    this.$emit("show", this.comtype);
+                }
+            }
+        }
 
         var vm = new Vue({
             el: '#example',
             components: {
                 'my-component': my_component,
                 'app-layout': app_layout,
-                'child':child_component
+                'child': child_component,
+                'item-component': item_component,
+                'button-component': button_component
+            },
+            data: {
+                items: [
+                    { text: "语文", code: "YUWEN" },
+                    { text: "数学", code: "SHUXUE" },
+                    { text: "英语", code: "YINGYU" }
+                ],
+                comps: [
+                    { type: my_component, name: "组件一" },
+                    { type: app_layout, name: "组件二" },
+                    { type: child_component, name: "组件三" },
+                    { type: item_component, name: "组件四" },
+                ],
+                currentView: my_component
+            },
+            methods: {
+                showContent: function (comtype) {
+                    this.currentView = comtype;
+                }
             }
         });
     </script>
