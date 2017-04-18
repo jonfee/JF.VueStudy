@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+
+    <div id="example">
+        <async-example></async-example>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component('async-example', function (resolve, reject) {
+            setTimeout(function () {
+                resolve({
+                    template:'<div>I am async!</div>'
+                })
+            })
+        })
+
+        var vm = new Vue({
+            el:'#example'
+        });
+    </script>
+</body>
+</html>
