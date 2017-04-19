@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="../Sources/js/vue.js"></script>
+</head>
+<body>
+
+    <div id="example">
+        <unique-name-of-my-component :size="size"></unique-name-of-my-component>
+
+        <tree-folder-contents :children="categories"></tree-folder-contents>
+
+    </div>
+
+    <script type="text/javascript">
+
+        Vue.component('unique-name-of-my-component', {
+            name: 'stack-overflow',
+            template: '<div>这是一个组件{{size}}<stack-overflow v-if="size>0"></stack-overflow></div>',
+            props: ['size']
+        });
+
+        Vue.component('tree-folder', {
+            template: '\
+                <p>\
+                    <span>{{ folder.name }}</span>\
+                    <tree-folder-contents :children="folder.children" />\
+                </p>\
+            ',
+            props: ['folder']
+        });
+
+        Vue.component('tree-folder-contents', {
+            template: '\
+                <ul>\
+                    <li v-for="child in children">\
+                        <tree-folder v-if="child.children" :folder="child" />\
+                        <span v-else>{{ child.name }}</span>\
+                    </li>\
+                </ul>\
+            ',
+            props: ['children']
+        })
+
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                size: 0,
+                categories: [
+                    {
+                        name: '数码产品',
+                        children: [
+                            {
+                                name: '手机',
+                                children: [
+                                    {
+                                        name: "智能手机",
+                                        children: null
+                                    },
+                                    {
+                                        name: "功能手机",
+                                        children: null
+                                    },
+                                    {
+                                        name: "儿童手机",
+                                        children: null
+                                    },
+                                    {
+                                        name: "老年手机",
+                                        children: null
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: '酒水',
+                        children: [
+                            {
+                                name: '白酒',
+                                children: [
+                                    {
+                                        name: "泸州老窖",
+                                        children: null
+                                    },
+                                    {
+                                        name: "衡水老白干",
+                                        children: null
+                                    },
+                                    {
+                                        name: "茅台",
+                                        children: null
+                                    }
+                                ]
+                            },
+                            { 
+                                name: '红酒',
+                                children: [
+                                    {
+                                        name: "长城葡萄酒",
+                                        children: null
+                                    },
+                                    {
+                                        name: "进口法国葡萄酒",
+                                        children: null
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

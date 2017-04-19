@@ -161,6 +161,7 @@
     <Content Include="Vue\vue-forcomponent.html" />
     <Content Include="Vue\vue-form.html" />
     <Content Include="Vue\vue-lifecycle.html" />
+    <Content Include="Vue\vue-recursion-component.html" />
     <Content Include="Vue\vue-slot.html" />
     <Content Include="Vue\vue-watcher.html" />
     <Content Include="Web.config" />
